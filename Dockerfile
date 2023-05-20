@@ -12,5 +12,5 @@ COPY default /etc/nginx/sites-available/default
 # Expose the port for access
 EXPOSE 80/tcp
 
-# Run the Nginx server
+# Run the Nginx servers
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]

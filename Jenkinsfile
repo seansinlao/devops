@@ -4,12 +4,12 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '5'))
   }
   environment {
-    DOCKERHUB_CREDENTIALS = credentials('seansinlao')
+    DOCKERHUB_CREDENTIALS = credentials('dockerhub')
   }
   stages {
     stage('Build') {
       steps {
-        sh 'docker build -t seansinlao/devops .'
+        sh 'docker build -t seansinlao/devops:nginx-devops-v$BUILD_NUMBER .'
       }
     }
     stage('Login') {
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Push') {
       steps {
-        sh 'docker push seansinlao/devops'
+        sh 'docker push seansinlao/devops:nginx-devops-v$BUILD_NUMBER'
       }
     }
   }
